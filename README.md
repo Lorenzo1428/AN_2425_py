@@ -3,7 +3,7 @@ The subject is divided into three main topics
 
 ## 1. Linear system resolution
 
-There are two main approaches
+There are two main approaches:
 ### Direct Methods
 - LU factorization
 - Cholesky factorization

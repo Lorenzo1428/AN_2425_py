@@ -1,5 +1,5 @@
 import numpy as np
-from metodi_numerici import fattorizzazioni as f
+from numerical_methods import fattorizzazioni as f
 n = 3
 A = np.random.rand(n,n)
 A = np.matmul(A,A.transpose())
