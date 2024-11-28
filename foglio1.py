@@ -1,5 +1,8 @@
 import numpy as np
+import metodi_numerici as m
+f = m.fattorizzazioni()
+A = 2
+A,B = f.lu_(A)
 
-a = 5
-b = 19
-print(b + a)
+
+print(A,B)
