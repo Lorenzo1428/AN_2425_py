@@ -1,3 +1,3 @@
 # Codes for numerical analysis:
- - Direct methods
- - Iterative methods
+ ## Direct methods
+ ## Iterative methods
