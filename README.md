@@ -11,6 +11,6 @@ There are two main approaches:
 ### Iterative Methods
 - Splitting based methods (Jacobi, Gauss-Seidel, SOR)
 - Richardson methods
-- GMRES
+- GMRES algorithm
  ## 2. Matrix's spectrum research
  ## 3. EDP resolution
