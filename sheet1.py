@@ -3,6 +3,7 @@ from numerical_methods import fattorizzazioni as f
 n = 3
 A = np.random.rand(n,n)
 A = np.matmul(A,A.transpose())
-L,U = f.lu_(A)
-print(np.linalg.norm( np.matmul(L,U) - A , np.inf) )
-C = 10
+b = np.random.rand(n,1)
+x = f.lu_2(A,b)
+x1 = np.linalg.solve(A,b)
+print(np.linalg.norm(x - x1, np.inf))
