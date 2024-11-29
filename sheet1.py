@@ -5,3 +5,4 @@ A = np.random.rand(n,n)
 A = np.matmul(A,A.transpose())
 L,U = f.lu_(A)
 print(np.linalg.norm( np.matmul(L,U) - A , np.inf) )
+C = 10
