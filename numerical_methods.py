@@ -1,8 +1,10 @@
 import numpy as np
 
 class fattorizzazioni:
+    '''Class that  implements some of the most known methods for solving linear system by using matrix factorization'''
     @staticmethod
     def lu_(A):
+        '''Finds the matrices L & U of the LU factorization'''
         n = np.size(A,1)
         L = np.eye(n)
         U = np.zeros((n,n))
@@ -15,6 +17,7 @@ class fattorizzazioni:
         return L,U
     
     def forwardraw(L,b):
+        '''Solves the lower triangular system given a nxn-dim lower triangular matrix L and a n-dim vector b'''
         n = np.size(L,1)
         y = np.zeros((n,1))
         y[0] = b[0]/L[0,0]
@@ -26,6 +29,7 @@ class fattorizzazioni:
         return y
     
     def backwardraw(U,y):
+        '''Solves the upper triangular system given a nxn-dim upper triangular matrix U and a n-dim vector y'''
         n = np.size(U,1)
         x = np.zeros((n,1))
         x[n-1] = y[n-1]/U[n-1,n-1]
@@ -38,6 +42,7 @@ class fattorizzazioni:
 
     @classmethod
     def lu_2(cls,A,b):
+        '''Solves the system using LU factorization'''
         L,U = cls.lu_(A)
         y = cls.forwardraw(L,b)
         x = cls.backwardraw(U,y)
