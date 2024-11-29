@@ -16,6 +16,21 @@ class fattorizzazioni:
                 L[k,i]= L[k,i]/U[i,i]
         return L,U
     
+    @staticmethod
+    def chol_(A):
+        '''Finds the matrix H' of Cholesky factorization'''
+        n = np.size(A,1)
+        H = np.zeros((n,n))
+        for k in range(0,n):
+            H[k,k] = A[k,k] - np.dot(H[k,0:k],H[k,0:k])
+            H[k,k] = np.sqrt(H[k,k])
+            for i in range(k+1,n):
+                H[i,k] = A[i,k] - np.dot(H[i,0:k],H[k,0:k])
+
+                H[i,k] = H[i,k]/H[k,k]
+        return H
+
+    @staticmethod
     def forwardraw(L,b):
         '''Solves the lower triangular system given a nxn-dim lower triangular matrix L and a n-dim vector b'''
         n = np.size(L,1)
@@ -28,6 +43,7 @@ class fattorizzazioni:
             y[k] = y[k]/L[k,k]
         return y
     
+    @staticmethod
     def backwardraw(U,y):
         '''Solves the upper triangular system given a nxn-dim upper triangular matrix U and a n-dim vector y'''
         n = np.size(U,1)
@@ -46,4 +62,12 @@ class fattorizzazioni:
         L,U = cls.lu_(A)
         y = cls.forwardraw(L,b)
         x = cls.backwardraw(U,y)
+        return x
+    
+    @classmethod
+    def chol_2(cls,A,b):
+        '''Solves the system using Cholesky factorization'''
+        H = cls.chol_(A)
+        y = cls.forwardraw(H,b)
+        x = cls.backwardraw(H.transpose(),y)
         return x
