@@ -1,5 +1,5 @@
 import numpy as np
-
+import copy
 class fattorizzazioni:
     '''Class that  implements some of the most known methods for solving linear system by using matrix factorization'''
     @staticmethod
@@ -109,6 +109,26 @@ class fattorizzazioni:
             x[k] = y[k] - np.dot(u_k,x_k)
             x[k] = x[k]/U[k,k]
         return x    
+    
+    @staticmethod
+    def gs_mod(A):
+        copyA = copy.copy(A)
+        m = np.size(copyA,0)
+        n = np.size(copyA,1)
+        Q = np.zeros((m,n))
+        R = np.zeros((n,n))
+        for k in range(0,n):
+            Ak = copyA[:,k]
+            r = np.linalg.norm(Ak)
+            Q[:,k] = Ak/r 
+            R[k,k] = r
+            Qk = Q[:,k]
+            for j in range(k+1,n):
+                Aj = copyA[:,j]
+                r = np.dot(Qk,Aj)
+                copyA[:,j] = Aj - r*Qk
+                R[k,j] = r;      
+        return Q,R
     
     @classmethod
     def lu_2(cls,A,b):
